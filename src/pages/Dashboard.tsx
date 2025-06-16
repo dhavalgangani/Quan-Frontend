@@ -1,10 +1,10 @@
-import React from 'react'
+import QuestionList from './Questions/QuestionList'
 
 function Dashboard() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <QuestionList />
+    </>
   )
 }
 
