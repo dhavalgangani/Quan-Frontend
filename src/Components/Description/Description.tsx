@@ -1,4 +1,5 @@
-import { Paper, Text, Badge, Divider } from '@mantine/core';
+import { Paper, Text, Badge, Divider, Box, Stack, Group, Container } from '@mantine/core';
+import { IconClock, IconDatabase, IconCode, IconBulb } from '@tabler/icons-react';
 
 interface Sample {
   input: string;
@@ -42,52 +43,151 @@ export function QuestionDescription({
   };
 
   return (
-    <Paper shadow="sm" p="lg" radius="md" withBorder>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <Text size="xl" fw={700}>{title}</Text>
-        <Badge color={getDifficultyColor(difficulty)} size="lg">{difficulty}</Badge>
-      </div>
+    <Paper shadow="sm" p="xl" radius="md" withBorder>
+      <Stack spacing="xl">
+        {/* Header Section */}
+        <Box>
+          <Group position="apart" align="center" mb="md">
+            <Text size="xl" fw={700} style={{ flex: 1 }}>{title}</Text>
+            <Badge 
+              color={getDifficultyColor(difficulty)} 
+              size="lg"
+              variant="filled"
+              radius="sm"
+            >
+              {difficulty}
+            </Badge>
+          </Group>
 
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-        <Badge color="blue" size="sm">Time Limit: {time_limit}ms</Badge>
-        <Badge color="blue" size="sm">Memory Limit: {memory_limit}MB</Badge>
-      </div>
+          <Group spacing="lg">
+            <Group spacing="xs">
+              <IconClock size={16} />
+              <Text size="sm" fw={500}>Time Limit: {time_limit}ms</Text>
+            </Group>
+            <Group spacing="xs">
+              <IconDatabase size={16} />
+              <Text size="sm" fw={500}>Memory Limit: {memory_limit}MB</Text>
+            </Group>
+          </Group>
+        </Box>
 
-      <Divider my="sm" />
+        <Divider />
 
-      <div style={{ marginBottom: '1rem' }}>
-        <Text fw={600} size="lg" mb="xs">Description</Text>
-        <div dangerouslySetInnerHTML={{ __html: description }} />
-      </div>
+        {/* Description Section */}
+        <Box>
+          <Group spacing="xs" mb="xs">
+            <IconCode size={20} />
+            <Text fw={600} size="lg">Description</Text>
+          </Group>
+          <Box className="description-content" style={{ 
+            backgroundColor: '#f8f9fa',
+            padding: '1rem',
+            borderRadius: '8px',
+            fontSize: '0.95rem',
+            lineHeight: 1.6
+          }}>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+          </Box>
+        </Box>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <Text fw={600} size="lg" mb="xs">Input Format</Text>
-        <div dangerouslySetInnerHTML={{ __html: input_description }} />
-      </div>
+        {/* Input Format Section */}
+        <Box>
+          <Text fw={600} size="lg" mb="xs">Input Format</Text>
+          <Box className="input-format" style={{ 
+            backgroundColor: '#f8f9fa',
+            padding: '1rem',
+            borderRadius: '8px',
+            fontSize: '0.95rem',
+            lineHeight: 1.6
+          }}>
+            <div dangerouslySetInnerHTML={{ __html: input_description }} />
+          </Box>
+        </Box>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <Text fw={600} size="lg" mb="xs">Output Format</Text>
-        <div dangerouslySetInnerHTML={{ __html: output_description }} />
-      </div>
+        {/* Output Format Section */}
+        <Box>
+          <Text fw={600} size="lg" mb="xs">Output Format</Text>
+          <Box className="output-format" style={{ 
+            backgroundColor: '#f8f9fa',
+            padding: '1rem',
+            borderRadius: '8px',
+            fontSize: '0.95rem',
+            lineHeight: 1.6
+          }}>
+            <div dangerouslySetInnerHTML={{ __html: output_description }} />
+          </Box>
+        </Box>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <Text fw={600} size="lg" mb="xs">Examples</Text>
-        {samples.map((sample, index) => (
-          <Paper key={index} withBorder p="sm" mb="xs">
-            <Text fw={500} size="sm">Input:</Text>
-            <Text size="sm" style={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>{sample.input}</Text>
-            <Text fw={500} size="sm" mt="xs">Output:</Text>
-            <Text size="sm" style={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>{sample.output}</Text>
-          </Paper>
-        ))}
-      </div>
+        {/* Examples Section */}
+        <Box>
+          <Text fw={600} size="lg" mb="xs">Examples</Text>
+          <Stack spacing="md">
+            {samples.map((sample, index) => (
+              <Paper 
+                key={index} 
+                withBorder 
+                p="md" 
+                radius="md"
+                style={{
+                  backgroundColor: '#fff',
+                  borderLeft: '4px solid #228be6'
+                }}
+              >
+                <Stack spacing="xs">
+                  <Box>
+                    <Text fw={500} size="sm" mb="xs">Input:</Text>
+                    <Box 
+                      style={{ 
+                        backgroundColor: '#f1f3f5',
+                        padding: '0.75rem',
+                        borderRadius: '6px',
+                        fontFamily: 'monospace',
+                        fontSize: '0.9rem'
+                      }}
+                    >
+                      {sample.input}
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Text fw={500} size="sm" mb="xs">Output:</Text>
+                    <Box 
+                      style={{ 
+                        backgroundColor: '#f1f3f5',
+                        padding: '0.75rem',
+                        borderRadius: '6px',
+                        fontFamily: 'monospace',
+                        fontSize: '0.9rem'
+                      }}
+                    >
+                      {sample.output}
+                    </Box>
+                  </Box>
+                </Stack>
+              </Paper>
+            ))}
+          </Stack>
+        </Box>
 
-      {hint && (
-        <div>
-          <Text fw={600} size="lg" mb="xs">Hint</Text>
-          <div dangerouslySetInnerHTML={{ __html: hint }} />
-        </div>
-      )}
+        {/* Hint Section */}
+        {hint && (
+          <Box>
+            <Group spacing="xs" mb="xs">
+              <IconBulb size={20} />
+              <Text fw={600} size="lg">Hint</Text>
+            </Group>
+            <Box className="hint-content" style={{ 
+              backgroundColor: '#fff3bf',
+              padding: '1rem',
+              borderRadius: '8px',
+              fontSize: '0.95rem',
+              lineHeight: 1.6,
+              border: '1px solid #ffd43b'
+            }}>
+              <div dangerouslySetInnerHTML={{ __html: hint }} />
+            </Box>
+          </Box>
+        )}
+      </Stack>
     </Paper>
   );
 }
