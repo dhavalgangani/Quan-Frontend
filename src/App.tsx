@@ -1,10 +1,14 @@
-import Dashboard from "./pages/Dashboard"
-import '@mantine/core/styles.css';
+import AppRoute from "./route/appRoute"
+import { BrowserRouter } from "react-router-dom"
 
 function App() {
   return (
     <>
-      <Dashboard />
+      <div>
+        <BrowserRouter>
+          <AppRoute />
+        </BrowserRouter>
+      </div>
     </>
   )
 }
