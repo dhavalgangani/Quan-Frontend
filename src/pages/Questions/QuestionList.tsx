@@ -208,7 +208,7 @@ import {
   Center,
   Pagination,
 } from '@mantine/core';
-import { IconEdit, IconTrash, IconExternalLink } from '@tabler/icons-react';
+import { IconExternalLink } from '@tabler/icons-react';
 import { RootState } from '../../Redux/Store/store';
 import { useNavigate } from 'react-router-dom';
 

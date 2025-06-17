@@ -1,6 +1,5 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { AppDispatch } from '../Store/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 
 interface CreatedBy {
   id: number;
@@ -87,7 +86,7 @@ export const fetchQuestions = ({ page }: FetchQuestionsParams) => async (dispatc
     dispatch(setLoading(true));
     console.log('Fetching questions for page:', page);
     
-    const response = await fetch(`http://localhost:3000/api/questions/getallquestion?page=${page}`);
+    const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/api/questions/getallquestion?page=${page}`);
     console.log('API Response status:', response.status);
     
     if (!response.ok) {
@@ -115,7 +114,7 @@ export const fetchQuestionById = (id: string) => async (dispatch: any) => {
     dispatch(setLoading(true));
     console.log('Fetching question with ID:', id);
     
-    const response = await fetch(`http://localhost:3000/api/questions/getquestion/${id}`);
+    const response = await fetch(`${import.meta.env.VITE_REACT_BACKEND_URL}/api/questions/getquestion/${id}`);
     console.log('API Response status:', response.status);
     
     if (!response.ok) {

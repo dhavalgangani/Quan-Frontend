@@ -1,4 +1,4 @@
-import { Paper, Text, Badge, Divider, Box, Stack, Group, Container } from '@mantine/core';
+import { Paper, Text, Badge, Divider, Box, Stack, Group } from '@mantine/core';
 import { IconClock, IconDatabase, IconCode, IconBulb } from '@tabler/icons-react';
 
 interface Sample {
@@ -44,10 +44,10 @@ export function QuestionDescription({
 
   return (
     <Paper shadow="sm" p="xl" radius="md" withBorder>
-      <Stack spacing="xl">
+      <Stack gap="xl">
         {/* Header Section */}
         <Box>
-          <Group position="apart" align="center" mb="md">
+          <Group justify="space-between" align="center" mb="md">
             <Text size="xl" fw={700} style={{ flex: 1 }}>{title}</Text>
             <Badge 
               color={getDifficultyColor(difficulty)} 
@@ -59,12 +59,12 @@ export function QuestionDescription({
             </Badge>
           </Group>
 
-          <Group spacing="lg">
-            <Group spacing="xs">
+          <Group gap="lg">
+            <Group gap="xs">
               <IconClock size={16} />
               <Text size="sm" fw={500}>Time Limit: {time_limit}ms</Text>
             </Group>
-            <Group spacing="xs">
+            <Group gap="xs">
               <IconDatabase size={16} />
               <Text size="sm" fw={500}>Memory Limit: {memory_limit}MB</Text>
             </Group>
@@ -75,7 +75,7 @@ export function QuestionDescription({
 
         {/* Description Section */}
         <Box>
-          <Group spacing="xs" mb="xs">
+          <Group gap="xs" mb="xs">
             <IconCode size={20} />
             <Text fw={600} size="lg">Description</Text>
           </Group>
@@ -121,7 +121,7 @@ export function QuestionDescription({
         {/* Examples Section */}
         <Box>
           <Text fw={600} size="lg" mb="xs">Examples</Text>
-          <Stack spacing="md">
+          <Stack gap="md">
             {samples.map((sample, index) => (
               <Paper 
                 key={index} 
@@ -133,7 +133,7 @@ export function QuestionDescription({
                   borderLeft: '4px solid #228be6'
                 }}
               >
-                <Stack spacing="xs">
+                <Stack gap="xs">
                   <Box>
                     <Text fw={500} size="sm" mb="xs">Input:</Text>
                     <Box 
@@ -171,7 +171,7 @@ export function QuestionDescription({
         {/* Hint Section */}
         {hint && (
           <Box>
-            <Group spacing="xs" mb="xs">
+            <Group gap="xs" mb="xs">
               <IconBulb size={20} />
               <Text fw={600} size="lg">Hint</Text>
             </Group>

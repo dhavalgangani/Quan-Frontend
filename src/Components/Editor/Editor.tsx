@@ -1,4 +1,4 @@
-import { Card, Group, Select, Paper, Text, Button } from '@mantine/core';
+import { Card, Group, Select, Paper, Text } from '@mantine/core';
 import { EditorView, basicSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { useEffect, useRef, useState, MutableRefObject, useCallback } from 'react';
