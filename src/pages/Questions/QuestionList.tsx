@@ -275,7 +275,6 @@ const QuestionList: React.FC = () => {
     error,
     currentPage,
     totalPages,
-    totalQuestions,
   } = useSelector((state: RootState) => state.questions);
   const navigate = useNavigate()
 
@@ -327,9 +326,9 @@ const QuestionList: React.FC = () => {
       <Text className="question-list-header" mb="md">
         Questions List
       </Text>
-      <Text size="sm" mb="md">
+      {/* <Text size="sm" mb="md">
         Showing {questions.length} of {totalQuestions} questions (Page {currentPage} of {totalPages})
-      </Text>
+      </Text> */}
 
       <Table.ScrollContainer minWidth={500}>
         <Table className="question-table" striped highlightOnHover>

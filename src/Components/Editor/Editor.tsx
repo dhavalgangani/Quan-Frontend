@@ -1,4 +1,4 @@
-import { Card, Group, Select, Paper, Text } from '@mantine/core';
+import { Card, Paper, Text } from '@mantine/core';
 import { EditorView, basicSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { useEffect, useRef, useState, MutableRefObject, useCallback } from 'react';
@@ -135,13 +135,13 @@ export function CodeEditor({ onRunRef, initialCode = '// Write your code here...
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder style={{ minWidth: 400 }}>
-      <Group justify="space-between" mb="sm">
+      {/* <Group justify="space-between" mb="sm">
         <Select
           data={['JavaScript', 'Python', 'C++']}
           defaultValue="JavaScript"
           style={{ width: 150 }}
         />
-      </Group>
+      </Group> */}
       <div ref={editorRef} style={{ border: '1px solid #eee', borderRadius: '4px' }} />
       
       {output && (
