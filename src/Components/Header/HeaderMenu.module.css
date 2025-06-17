@@ -1,0 +1,70 @@
+.header {
+    background-color: #f2f2f2;
+    padding: 10px 15px;
+    position: sticky; 
+    top: 0;
+    z-index: 10;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    
+}
+
+.buttonContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.playIcon {
+    color: #000000;
+    font-size: 20px;
+}
+
+.btnrun {
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px; 
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.submitButton {
+    background-color: #ffffff;
+    color: #4CAF50;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px; 
+    padding: 10px 16px;
+    cursor: pointer;
+}
+.submitIcon {
+    color: #4CAF50;
+    font-size: 20px;
+}
+
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}

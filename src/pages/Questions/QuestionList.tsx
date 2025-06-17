@@ -210,16 +210,63 @@ import {
 } from '@mantine/core';
 import { IconEdit, IconTrash, IconExternalLink } from '@tabler/icons-react';
 import { RootState } from '../../Redux/Store/store';
+import { useNavigate } from 'react-router-dom';
 
-interface Question {
-  _id: string;
-  title: string;
-  options: string[];
-  correctAnswer: string;
-  category: string;
-  difficulty: string;
+// interface Question {
+//   _id: string;
+//   title: string;
+//   options: string[];
+//   correctAnswer: string;
+//   category: string;
+//   difficulty: string;
+// }
+interface CreatedBy {
+  id: number;
+  username: string;
+  real_name: string | null;
 }
 
+interface Template {
+  JavaScript: string;
+}
+
+interface LanguageBoilerPlate {
+  C: string;
+  Cpp: string;
+  Java: string;
+  Python2: string;
+  Python3: string;
+  JavaScript: string;
+}
+
+interface Sample {
+  input: string;
+  output: string;
+}
+interface Question {
+  id: number;
+  created_by: CreatedBy;
+  template: Template;
+  editorial: string | null;
+  bookmarked: boolean;
+  language_boiler_plate: LanguageBoilerPlate;
+  _id: string;
+  title: string;
+  description: string;
+  input_description: string;
+  output_description: string;
+  samples: Sample[];
+  hint: string;
+  languages: string[];
+  create_time: string;
+  last_update_time: string | null;
+  time_limit: number;
+  memory_limit: number;
+  difficulty: string;
+  total_score: number;
+  submission_number: number;
+  accepted_number: number;
+}
 const QuestionList: React.FC = () => {
   const dispatch = useDispatch();
   const {
@@ -230,6 +277,7 @@ const QuestionList: React.FC = () => {
     totalPages,
     totalQuestions,
   } = useSelector((state: RootState) => state.questions);
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchQuestions({ page: currentPage }) as any);
@@ -308,6 +356,7 @@ const QuestionList: React.FC = () => {
                       color="blue"
                       size="xs"
                       leftSection={<IconExternalLink size={14} />}
+                      onClick={()=>{navigate(`/question/${question._id}`)}}
                     >
                       Open
                     </Button>
