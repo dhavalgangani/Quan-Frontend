@@ -199,3 +199,44 @@
 .question-table {
     animation: fadeIn 0.3s ease-in-out;
 }
+
+.pagination-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-container .mantine-Pagination-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 36px;
+    height: 36px;
+}
+
+.pagination-container .mantine-Pagination-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-container .mantine-Pagination-control[data-active] {
+    background-color: #228be6;
+    color: white;
+}
+
+.pagination-container .mantine-Pagination-control:hover:not([data-active]) {
+    background-color: #f1f3f5;
+}
+
+.pagination-container .mantine-Pagination-control:disabled {
+    background-color: #f1f3f5;
+    color: #adb5bd;
+    cursor: not-allowed;
+}
+
+.text-center {
+    text-align: center;
+}

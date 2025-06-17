@@ -208,7 +208,7 @@ import {
   Center,
   Pagination,
 } from '@mantine/core';
-import { IconEdit, IconTrash } from '@tabler/icons-react';
+import { IconEdit, IconTrash, IconExternalLink } from '@tabler/icons-react';
 import { RootState } from '../../Redux/Store/store';
 
 interface Question {
@@ -237,14 +237,16 @@ const QuestionList: React.FC = () => {
 
   const handlePageChange = (page: number) => {
     console.log(page);
-    
+
     dispatch(fetchQuestions({ page }) as any);
   };
 
   const getDifficultyClass = (difficulty: string): string => {
-    switch(difficulty?.toLowerCase()) {
+    console.log("Difficulty received:", difficulty);
+    switch (difficulty?.toLowerCase()) {
       case 'high': return 'difficulty-high';
-      case 'medium': return 'difficulty-medium';
+      case 'medium':
+      case 'mid': return 'difficulty-medium';
       case 'low': return 'difficulty-low';
       default: return '';
     }
@@ -294,30 +296,22 @@ const QuestionList: React.FC = () => {
             {questions.map((question: Question) => (
               <Table.Tr key={question._id}>
                 <Table.Td>{question.title || 'No question text'}</Table.Td>
-                <Table.Td className={getDifficultyClass(question.difficulty)}>
-                  {question.difficulty || 'N/A'}
-                </Table.Td>
                 <Table.Td>
-                  <div className="button-group">
+                  <Text span className={getDifficultyClass(question.difficulty)}>
+                    {question.difficulty}
+                  </Text>
+                </Table.Td>
+                <Table.Td className="text-center">
+                  <Group justify="center">
                     <Button
-                      className="action-button"
                       variant="light"
                       color="blue"
                       size="xs"
-                      leftSection={<IconEdit size={14} />}
+                      leftSection={<IconExternalLink size={14} />}
                     >
-                      Edit
+                      Open
                     </Button>
-                    <Button
-                      className="action-button"
-                      variant="light"
-                      color="red"
-                      size="xs"
-                      leftSection={<IconTrash size={14} />}
-                    >
-                      Delete
-                    </Button>
-                  </div>
+                  </Group>
                 </Table.Td>
               </Table.Tr>
             ))}
@@ -325,16 +319,17 @@ const QuestionList: React.FC = () => {
         </Table>
       </Table.ScrollContainer>
 
-      <Center mt="xl">
+      <Center className="pagination-container">
         <Pagination
           total={totalPages}
           value={currentPage}
           onChange={handlePageChange}
-          withEdges
-          size="md"
-          radius="md"
-          color="blue"
+          size="lg"
+          radius="lg"
+          siblings={1}
+          boundaries={1}
         />
+
       </Center>
     </div>
   );
